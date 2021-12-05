@@ -1,0 +1,29 @@
+item {
+    id: 1
+    name: 'red_blood_cell'
+}
+
+item {
+    id: 2
+    name: 'leukocyte'
+}
+
+item {
+    id: 3
+    name: 'ring'
+}
+
+item {
+    id: 4
+    name: 'trophozoite'
+}
+
+item {
+    id: 5
+    name: 'schizont'
+}
+
+item {
+    id: 6
+    name: 'gametocyte'
+}

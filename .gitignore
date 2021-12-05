@@ -1,0 +1,7 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+resnet
+unet
+yolov4/darknet
+yolov4/yolov4-custom_last.weights
