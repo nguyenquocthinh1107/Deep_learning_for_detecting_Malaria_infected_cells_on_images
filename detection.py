@@ -6,6 +6,7 @@ import numpy as np
 import pybase64
 from yolov4 import yolov4_detect
 import matplotlib.pyplot as plt
+from PIL import Image
 
 # some constant variables for RESNET
 PATH_TO_LABELS = 'label_map.pbtxt'
@@ -24,12 +25,15 @@ def Decode(image):
     imgdata = pybase64.b64decode(image)
     image_out = np.asarray(bytearray(imgdata), dtype="uint8")
     image_out = cv2.imdecode(image_out, cv2.IMREAD_COLOR)
+    #Change image mode from BGR to RGB
+    image_out = cv2.cvtColor(image_out, cv2.COLOR_BGR2RGB)
     return image_out
 
 def detectWithResnet(image):
     print('Loading Resnet...')
+    image_np = np.array(image)
     # The input needs to be a tensor, convert it using `tf.convert_to_tensor`.
-    input_tensor = tf.convert_to_tensor(image)
+    input_tensor = tf.convert_to_tensor(image_np)
     # The model expects a batch of images, so add an axis with `tf.newaxis`.
     input_tensor = input_tensor[tf.newaxis, ...]
 
@@ -60,7 +64,7 @@ def detectWithResnet(image):
                                                         min_score_thresh=.30,
                                                         agnostic_mode=False)
     
-    cv2.imwrite('static/output.png', image_with_detections)
+    plt.imsave('static/output.png', image_with_detections)
 
 def detectWithYOLOv4(image):
     print('Loading YOLOv4...')
@@ -71,7 +75,7 @@ def detectWithUNET(image):
     print('Loading UNET...')
     # cv2.imwrite('static/input.png', image)
     # image_input = imageio.imread('static/input.png')
-
+    #image_input = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     # img_test = imageio.imread('/home/quocthinh/Study/SSD_MOBILENET_HELMET_DETECTION-main/Falciparum_24.png')
     model = tf.keras.models.load_model('unet/unet_singleclass_800x600.h5')
     net_input = np.expand_dims(image, axis=0)

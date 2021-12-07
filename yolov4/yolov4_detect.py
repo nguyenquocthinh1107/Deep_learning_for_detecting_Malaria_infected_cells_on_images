@@ -10,7 +10,7 @@ import numpy as np
 
 PATH_TO_CONFIG_FILE = '/home/quocthinh/Study/SSD_MOBILENET_HELMET_DETECTION-main/yolov4/yolov4-custom.cfg'
 PATH_TO_DATA_FILE = '/home/quocthinh/Study/SSD_MOBILENET_HELMET_DETECTION-main/yolov4/obj.data'
-PATH_TO_WEIGHTS_FILE = '/home/quocthinh/Study/SSD_MOBILENET_HELMET_DETECTION-main/yolov4/yolov4-custom_last.weights'
+PATH_TO_WEIGHTS_FILE = '/home/quocthinh/Study/SSD_MOBILENET_HELMET_DETECTION-main/yolov4/yolov4-custom_best.weights'
 
 def check_batch_shape(images, batch_size):
 	"""
